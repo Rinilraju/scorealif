@@ -1,287 +1,279 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ALIF Placement Team | Task Dashboard</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Team ALIF | Score Tracker</title>
 
-  <!-- FONT -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    /* ================= ROOT ================= */
-    :root {
-      --primary: #38bdf8;
-      --bg-dark: #020617;
-      --bg-card: #0f172a;
-      --text-main: #e5e7eb;
-      --text-muted: #94a3b8;
-    }
+<style>
+:root {
+  --primary: #38bdf8;
+  --bg: #020617;
+  --card: #0f172a;
+  --text: #e5e7eb;
+}
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    body {
-      min-height: 100vh;
-      width: 100%;
-      font-family: "Inter", sans-serif;
-      background: radial-gradient(circle at top, #020617, #000);
-      color: var(--text-main);
-      display: flex;
-      justify-content: center;
-    }
+body {
+  font-family: 'Inter', sans-serif;
+  background: radial-gradient(circle at top, #020617, #000);
+  color: var(--text);
+  min-height: 100vh;
+}
 
-    /* ================= CONTAINER ================= */
-    .container {
-      width: 100%;
-      max-width: 1400px;
-      padding: 60px 80px;
-    }
+/* ---------- HEADER ---------- */
+header {
+  text-align: center;
+  padding: 4rem 1rem 3rem;
+}
 
-    /* ================= HEADER ================= */
-    .main-header {
-      text-align: center;
-      margin-bottom: 70px;
-    }
+.logo {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 1rem;
+}
 
-    .main-header h1 {
-      font-size: clamp(3.2rem, 5vw, 4.5rem);
-      letter-spacing: 0.35rem;
-      text-shadow: 0 0 30px rgba(56, 189, 248, 0.45);
-    }
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: invert(1) brightness(2);
+}
 
-    .main-header h2 {
-      margin-top: 14px;
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
-      font-weight: 500;
-      color: var(--primary);
-      letter-spacing: 0.14rem;
-    }
+header h1 {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  letter-spacing: 0.25rem;
+  text-shadow: 0 0 20px rgba(56,189,248,0.4);
+}
 
-    .main-header p {
-      margin-top: 18px;
-      font-size: 1.05rem;
-      color: var(--text-muted);
-      letter-spacing: 0.2rem;
-      text-transform: uppercase;
-    }
+header p {
+  opacity: 0.8;
+  font-size: 1.1rem;
+}
 
-    /* ================= TEAM GRID ================= */
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 28px;
-    }
+/* ---------- TOGGLE ---------- */
+.toggle {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
 
-    /* ================= MEMBER CARD ================= */
-    .member {
-      background: var(--bg-card);
-      border-radius: 20px;
-      padding: 26px;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+.toggle button {
+  padding: 0.8rem 1.6rem;
+  border: none;
+  background: var(--card);
+  color: var(--text);
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
 
-    .member::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        120deg,
-        transparent,
-        rgba(56,189,248,0.15),
-        transparent
-      );
-      transform: translateX(-100%);
-      transition: transform 0.6s ease;
-    }
+.toggle button:first-child {
+  border-radius: 12px 0 0 12px;
+}
 
-    .member:hover::before {
-      transform: translateX(100%);
-    }
+.toggle button:last-child {
+  border-radius: 0 12px 12px 0;
+}
 
-    .member:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 30px 60px rgba(56,189,248,0.35);
-    }
+.toggle button.active {
+  background: var(--primary);
+  color: #020617;
+}
 
-    /* ================= MEMBER HEADER ================= */
-    .member h3 {
-      font-size: 1.4rem;
-      margin-bottom: 6px;
-    }
+/* ---------- SECTIONS ---------- */
+section {
+  padding: 2rem 6%;
+}
 
-    .member .role {
-      font-size: 0.9rem;
-      color: var(--primary);
-      margin-bottom: 14px;
-    }
+/* ---------- TEAM SCORE ---------- */
+.team-score {
+  max-width: 500px;
+  margin: auto;
+  background: var(--card);
+  padding: 2.5rem;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+}
 
-    /* ================= TASK LIST ================= */
-    .tasks {
-      display: none;
-      margin-top: 16px;
-      animation: expand 0.35s ease forwards;
-    }
+.team-score h2 {
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
 
-    .tasks ul {
-      list-style: none;
-      margin-top: 10px;
-    }
+.score {
+  font-size: 4rem;
+  font-weight: 700;
+  margin-top: 1rem;
+}
 
-    .tasks li {
-      padding: 10px 14px;
-      margin-bottom: 10px;
-      background: rgba(2,6,23,0.75);
-      border-radius: 10px;
-      font-size: 0.95rem;
-      border-left: 3px solid var(--primary);
-    }
+/* ---------- PERSONAL SCORES ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
 
-    /* ================= ACTIVE STATE ================= */
-    .member.active .tasks {
-      display: block;
-    }
+.card {
+  background: var(--card);
+  padding: 1.5rem;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
 
-    /* ================= ANIMATION ================= */
-    @keyframes expand {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(56,189,248,0.25);
+}
 
-    /* ================= MOBILE ================= */
-    @media (max-width: 768px) {
-      .container {
-        padding: 40px 20px;
-      }
+.card h3 {
+  margin-bottom: 0.6rem;
+}
 
-      .main-header h1 {
-        letter-spacing: 0.2rem;
-      }
-    }
-  </style>
+.points {
+  font-size: 2.2rem;
+  margin: 0.6rem 0;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.controls button {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: var(--primary);
+  color: #020617;
+  font-size: 1.4rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.controls button:hover {
+  transform: scale(1.1);
+}
+
+/* ---------- HIDE ---------- */
+.hidden {
+  display: none;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  opacity: 0.6;
+  font-size: 0.85rem;
+}
+</style>
 </head>
 
 <body>
 
-  <div class="container">
-
-    <!-- HEADER -->
-    <header class="main-header">
-      <h1>ALIF Placement Team</h1>
-      <h2>Task Assignment Dashboard</h2>
-      <p>Discipline • Consistency • Collective Growth</p>
-    </header>
-
-    <!-- TEAM -->
-    <section class="team-grid">
-
-      <div class="member" onclick="toggle(this)">
-        <h3>Farzin</h3>
-        <div class="role">Team Lead</div>
-        <div class="tasks">
-          <ul>
-            <li>Coordinate daily task updates</li>
-            <li>Track overall team progress</li>
-            <li>Conduct weekly review</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="member" onclick="toggle(this)">
-        <h3>Niya</h3>
-        <div class="role">Documentation</div>
-        <div class="tasks">
-          <ul>
-            <li>Prepare placement notes</li>
-            <li>Maintain shared documents</li>
-            <li>Summarize mock interviews</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="member" onclick="toggle(this)">
-        <h3>Taniya</h3>
-        <div class="role">Aptitude Practice</div>
-        <div class="tasks">
-          <ul>
-            <li>Solve daily aptitude sets</li>
-            <li>Share shortcuts & tricks</li>
-            <li>Conduct weekly test</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="member" onclick="toggle(this)">
-        <h3>Vaishnavi</h3>
-        <div class="role">Technical Prep</div>
-        <div class="tasks">
-          <ul>
-            <li>Revise core CS subjects</li>
-            <li>Prepare interview Q&A</li>
-            <li>Help peers with doubts</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="member" onclick="toggle(this)">
-        <h3>Sinan</h3>
-        <div class="role">Coding Practice</div>
-        <div class="tasks">
-          <ul>
-            <li>Solve daily coding problems</li>
-            <li>Share optimized solutions</li>
-            <li>Track coding streaks</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="member" onclick="toggle(this)">
-        <h3>Rinil</h3>
-        <div class="role">Web & Tools</div>
-        <div class="tasks">
-          <ul>
-            <li>Maintain internal dashboards</li>
-            <li>Improve UI/UX</li>
-            <li>Deploy team websites</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="member" onclick="toggle(this)">
-        <h3>Sourav</h3>
-        <div class="role">Mock Interviews</div>
-        <div class="tasks">
-          <ul>
-            <li>Organize mock sessions</li>
-            <li>Prepare interview scenarios</li>
-            <li>Give structured feedback</li>
-          </ul>
-        </div>
-      </div>
-
-    </section>
-
+<header>
+  <div class="logo">
+    <img src="alif-logo-white.png" alt="ALIF Logo">
   </div>
+  <h1>TEAM ALIF</h1>
+  <p>United We Rise</p>
+</header>
 
-  <!-- SCRIPT -->
-  <script>
-    function toggle(card) {
-      card.classList.toggle("active");
-    }
-  </script>
+<div class="toggle">
+  <button class="active" onclick="showTeam()">Team Score</button>
+  <button onclick="showPersonal()">Personal Scores</button>
+</div>
+
+<!-- TEAM SCORE -->
+<section id="teamSection">
+  <div class="team-score">
+    <h2>Team Score</h2>
+    <div class="score" id="teamScore">0</div>
+  </div>
+</section>
+
+<!-- PERSONAL SCORES -->
+<section id="personalSection" class="hidden">
+  <div class="grid" id="personalGrid"></div>
+</section>
+
+<footer>
+  © 2026 Team ALIF | Motivation Through Unity
+</footer>
+
+<script>
+const members = [
+  "Farzin",
+  "Niya",
+  "Vaishnavi",
+  "Taniya",
+  "Nandana",
+  "Sourav",
+  "Sinan",
+  "Rinil"
+];
+
+const personalGrid = document.getElementById("personalGrid");
+const teamScoreEl = document.getElementById("teamScore");
+
+let teamScore = 0;
+let personalScores = {};
+
+members.forEach(name => {
+  personalScores[name] = 0;
+
+  const card = document.createElement("div");
+  card.className = "card";
+
+  card.innerHTML = `
+    <h3>${name}</h3>
+    <div class="points" id="p-${name}">0</div>
+    <div class="controls">
+      <button onclick="changeScore('${name}', 1)">+</button>
+      <button onclick="changeScore('${name}', -1)">−</button>
+    </div>
+  `;
+
+  personalGrid.appendChild(card);
+});
+
+function changeScore(name, value) {
+  personalScores[name] += value;
+  document.getElementById(`p-${name}`).textContent = personalScores[name];
+
+  teamScore += value;
+  teamScoreEl.textContent = teamScore;
+}
+
+function showTeam() {
+  document.getElementById("teamSection").classList.remove("hidden");
+  document.getElementById("personalSection").classList.add("hidden");
+  document.querySelectorAll(".toggle button")[0].classList.add("active");
+  document.querySelectorAll(".toggle button")[1].classList.remove("active");
+}
+
+function showPersonal() {
+  document.getElementById("teamSection").classList.add("hidden");
+  document.getElementById("personalSection").classList.remove("hidden");
+  document.querySelectorAll(".toggle button")[1].classList.add("active");
+  document.querySelectorAll(".toggle button")[0].classList.remove("active");
+}
+</script>
 
 </body>
 </html>
