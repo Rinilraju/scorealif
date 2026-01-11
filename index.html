@@ -1,185 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Team ALIF | Score Tracker</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team ALIF | United We Rise</title>
 
-<!-- FONT -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-:root {
-  --primary: #38bdf8;
-  --bg: #020617;
-  --card: #0f172a;
-  --text: #e5e7eb;
+:root{
+  --bg:#020617;
+  --card:#0f172a;
+  --accent:#38bdf8;
+  --text:#e5e7eb;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  font-family:'Inter',sans-serif;
+  background:radial-gradient(circle at top,#020617,#000);
+  color:var(--text);
+  min-height:100vh;
 }
 
-body {
-  font-family: 'Inter', sans-serif;
-  background: radial-gradient(circle at top, #020617, #000);
-  color: var(--text);
-  min-height: 100vh;
+header{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:1rem;
+  text-align:center;
 }
 
-/* ---------- HEADER ---------- */
-header {
-  text-align: center;
-  padding: 4rem 1rem 3rem;
+.logo{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  background:var(--card);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 0 25px rgba(56,189,248,.4);
 }
 
-.logo {
-  width: 120px;
-  height: 120px;
-  margin: 0 auto 1rem;
+.logo span{
+  font-size:2rem;
+  color:var(--accent);
+  font-weight:700;
 }
 
-.logo img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: invert(1) brightness(2);
+header h1{
+  font-size:3rem;
+  letter-spacing:.3rem;
 }
 
-header h1 {
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
-  letter-spacing: 0.25rem;
-  text-shadow: 0 0 20px rgba(56,189,248,0.4);
+header p{
+  opacity:.8;
+  font-size:1.2rem;
 }
 
-header p {
-  opacity: 0.8;
-  font-size: 1.1rem;
+.container{
+  padding:4rem 8%;
 }
 
-/* ---------- TOGGLE ---------- */
-.toggle {
-  display: flex;
-  justify-content: center;
-  margin: 2rem 0;
+.toggle{
+  display:flex;
+  justify-content:center;
+  gap:1rem;
+  margin-bottom:2.5rem;
 }
 
-.toggle button {
-  padding: 0.8rem 1.6rem;
-  border: none;
-  background: var(--card);
-  color: var(--text);
-  cursor: pointer;
-  font-weight: 600;
-  transition: 0.3s;
+.toggle button{
+  padding:.7rem 1.5rem;
+  border:none;
+  border-radius:12px;
+  background:var(--card);
+  color:var(--text);
+  cursor:pointer;
+  transition:.3s;
 }
 
-.toggle button:first-child {
-  border-radius: 12px 0 0 12px;
+.toggle button.active,
+.toggle button:hover{
+  background:var(--accent);
+  color:#020617;
 }
 
-.toggle button:last-child {
-  border-radius: 0 12px 12px 0;
+.section{
+  display:none;
 }
 
-.toggle button.active {
-  background: var(--primary);
-  color: #020617;
+.section.active{
+  display:block;
 }
 
-/* ---------- SECTIONS ---------- */
-section {
-  padding: 2rem 6%;
+.team-score{
+  max-width:450px;
+  margin:auto;
+  background:var(--card);
+  padding:2.5rem;
+  border-radius:20px;
+  text-align:center;
+  box-shadow:0 20px 50px rgba(0,0,0,.6);
 }
 
-/* ---------- TEAM SCORE ---------- */
-.team-score {
-  max-width: 500px;
-  margin: auto;
-  background: var(--card);
-  padding: 2.5rem;
-  border-radius: 20px;
-  text-align: center;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+.team-score h2{
+  color:var(--accent);
+  margin-bottom:1rem;
 }
 
-.team-score h2 {
-  color: var(--primary);
-  margin-bottom: 1rem;
+.score{
+  font-size:4rem;
+  font-weight:700;
+  cursor:pointer;
+  transition:.3s;
 }
 
-.score {
-  font-size: 4rem;
-  font-weight: 700;
-  margin-top: 1rem;
+.score:hover{
+  text-shadow:0 0 20px rgba(56,189,248,.6);
 }
 
-/* ---------- PERSONAL SCORES ---------- */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
+.note{
+  font-size:.85rem;
+  opacity:.6;
 }
 
-.card {
-  background: var(--card);
-  padding: 1.5rem;
-  border-radius: 16px;
-  text-align: center;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-  transition: transform 0.3s, box-shadow 0.3s;
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:1.5rem;
 }
 
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(56,189,248,0.25);
+.card{
+  background:var(--card);
+  padding:1.5rem;
+  border-radius:16px;
+  text-align:center;
+  transition:.3s;
+  box-shadow:0 10px 30px rgba(0,0,0,.5);
 }
 
-.card h3 {
-  margin-bottom: 0.6rem;
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 20px 40px rgba(56,189,248,.25);
 }
 
-.points {
-  font-size: 2.2rem;
-  margin: 0.6rem 0;
+.card h3{
+  margin-bottom:.8rem;
 }
 
-.controls {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
+.points{
+  font-size:2.5rem;
+  margin:.8rem 0;
 }
 
-.controls button {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  border: none;
-  background: var(--primary);
-  color: #020617;
-  font-size: 1.4rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: transform 0.2s;
+.controls{
+  display:flex;
+  justify-content:center;
+  gap:1rem;
 }
 
-.controls button:hover {
-  transform: scale(1.1);
+.controls button{
+  width:45px;
+  height:45px;
+  border:none;
+  border-radius:50%;
+  background:var(--accent);
+  color:#020617;
+  font-size:1.4rem;
+  font-weight:700;
+  cursor:pointer;
+  transition:.2s;
 }
 
-/* ---------- HIDE ---------- */
-.hidden {
-  display: none;
+.controls button:hover{
+  transform:scale(1.1);
 }
 
-/* ---------- FOOTER ---------- */
-footer {
-  text-align: center;
-  padding: 1.5rem;
-  opacity: 0.6;
-  font-size: 0.85rem;
+footer{
+  text-align:center;
+  padding:2rem;
+  opacity:.6;
+  font-size:.85rem;
 }
 </style>
 </head>
@@ -187,37 +191,40 @@ footer {
 <body>
 
 <header>
-  <div class="logo">
-    <img src="alif-logo-white.png" alt="ALIF Logo">
-  </div>
+  <div class="logo"><span>ALIF</span></div>
   <h1>TEAM ALIF</h1>
   <p>United We Rise</p>
 </header>
 
-<div class="toggle">
-  <button class="active" onclick="showTeam()">Team Score</button>
-  <button onclick="showPersonal()">Personal Scores</button>
+<div class="container">
+
+  <div class="toggle">
+    <button class="active" onclick="showTeam()">Team Score</button>
+    <button onclick="showPersonal()">Personal Tally</button>
+  </div>
+
+  <!-- TEAM SECTION -->
+  <div id="teamSection" class="section active">
+    <div class="team-score">
+      <h2>Team Score</h2>
+      <div id="teamScore" class="score" onclick="editTeamScore()">0</div>
+      <p class="note">Tap score to add points</p>
+    </div>
+  </div>
+
+  <!-- PERSONAL SECTION -->
+  <div id="personalSection" class="section">
+    <div class="grid" id="personalGrid"></div>
+  </div>
+
 </div>
 
-<!-- TEAM SCORE -->
-<section id="teamSection">
-  <div class="team-score">
-    <h2>Team Score</h2>
-    <div class="score" id="teamScore">0</div>
-  </div>
-</section>
-
-<!-- PERSONAL SCORES -->
-<section id="personalSection" class="hidden">
-  <div class="grid" id="personalGrid"></div>
-</section>
-
 <footer>
-  © 2026 Team ALIF | Motivation Through Unity
+  © 2026 Team ALIF | Placement Drive
 </footer>
 
 <script>
-const members = [
+const members=[
   "Farzin",
   "Niya",
   "Vaishnavi",
@@ -228,48 +235,59 @@ const members = [
   "Rinil"
 ];
 
-const personalGrid = document.getElementById("personalGrid");
-const teamScoreEl = document.getElementById("teamScore");
+let teamScore=0;
+let personalScores={};
 
-let teamScore = 0;
-let personalScores = {};
+const teamScoreEl=document.getElementById("teamScore");
+const grid=document.getElementById("personalGrid");
 
-members.forEach(name => {
-  personalScores[name] = 0;
+members.forEach(name=>{
+  personalScores[name]=0;
 
-  const card = document.createElement("div");
-  card.className = "card";
+  const card=document.createElement("div");
+  card.className="card";
 
-  card.innerHTML = `
+  card.innerHTML=`
     <h3>${name}</h3>
     <div class="points" id="p-${name}">0</div>
     <div class="controls">
-      <button onclick="changeScore('${name}', 1)">+</button>
-      <button onclick="changeScore('${name}', -1)">−</button>
+      <button onclick="update('${name}',1)">+</button>
+      <button onclick="update('${name}',-1)">−</button>
     </div>
   `;
-
-  personalGrid.appendChild(card);
+  grid.appendChild(card);
 });
 
-function changeScore(name, value) {
-  personalScores[name] += value;
-  document.getElementById(`p-${name}`).textContent = personalScores[name];
-
-  teamScore += value;
-  teamScoreEl.textContent = teamScore;
+function update(name,val){
+  personalScores[name]+=val;
+  document.getElementById(`p-${name}`).textContent=personalScores[name];
+  teamScore+=val;
+  teamScoreEl.textContent=teamScore;
 }
 
-function showTeam() {
-  document.getElementById("teamSection").classList.remove("hidden");
-  document.getElementById("personalSection").classList.add("hidden");
+function editTeamScore(){
+  const input=prompt("Enter points to add:");
+  if(input===null) return;
+
+  const val=parseInt(input);
+  if(isNaN(val)){
+    alert("Enter a valid number");
+    return;
+  }
+  teamScore+=val;
+  teamScoreEl.textContent=teamScore;
+}
+
+function showTeam(){
+  document.getElementById("teamSection").classList.add("active");
+  document.getElementById("personalSection").classList.remove("active");
   document.querySelectorAll(".toggle button")[0].classList.add("active");
   document.querySelectorAll(".toggle button")[1].classList.remove("active");
 }
 
-function showPersonal() {
-  document.getElementById("teamSection").classList.add("hidden");
-  document.getElementById("personalSection").classList.remove("hidden");
+function showPersonal(){
+  document.getElementById("teamSection").classList.remove("active");
+  document.getElementById("personalSection").classList.add("active");
   document.querySelectorAll(".toggle button")[1].classList.add("active");
   document.querySelectorAll(".toggle button")[0].classList.remove("active");
 }
@@ -277,3 +295,4 @@ function showPersonal() {
 
 </body>
 </html>
+
